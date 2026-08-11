@@ -32,3 +32,10 @@
   max-width: 100%;
   width: 200px;
 }
+
+.main-nav-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  margin-right: 0.35rem;
+}
