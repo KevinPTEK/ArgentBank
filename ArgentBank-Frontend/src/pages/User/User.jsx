@@ -1,6 +1,7 @@
 import Nav from '../../components/Nav/Nav'
 import Footer from '../../components/Footer/Footer'
 import AccountCard from '../../components/AccountCard/AccountCard'
+import { useSelector } from 'react-redux'
 import './User.css'
 
 const accounts = [
@@ -25,15 +26,17 @@ const accounts = [
 ]
 
 function User() {
+  const { firstName, lastName } = useSelector((state) => state.user)
+
   return (
     <>
-      <Nav userName="Tony" />
+      <Nav />
       <main className="main bg-dark">
         <div className="header">
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {firstName} {lastName}!
           </h1>
           <button className="edit-button">Edit Name</button>
         </div>

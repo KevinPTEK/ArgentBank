@@ -48,3 +48,9 @@
   margin-left: 0.25rem;
 }
 
+.sign-in-error {
+  color: #b00020;
+  text-align: left;
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem;
+}
