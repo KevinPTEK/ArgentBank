@@ -12,25 +12,23 @@ function Nav({ userName }) {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <div>
-          {userName ? (
-            <>
-              <Link className="main-nav-item" to="/profile">
-                <UserCircleIcon className="main-nav-icon" />
-                {userName}
-              </Link>
-              <Link className="main-nav-item" to="/">
-                <SignOutIcon className="main-nav-icon" />
-                Sign Out
-              </Link>
-            </>
-          ) : (
-            <Link className="main-nav-item" to="/login">
+        {userName ? (
+          <>
+            <Link className="main-nav-item" to="/profile">
               <UserCircleIcon className="main-nav-icon" />
-              Sign In
+              {userName}
             </Link>
-          )}
-        </div>
+            <Link className="main-nav-item" to="/">
+              <SignOutIcon className="main-nav-icon" />
+              Sign Out
+            </Link>
+          </>
+        ) : (
+          <Link className="main-nav-item" to="/login">
+            <UserCircleIcon className="main-nav-icon" />
+            Sign In
+          </Link>
+        )}
       </div>
     </nav>
   )
