@@ -35,3 +35,28 @@ export async function getProfile(token) {
 
   return data.body
 }
+
+export async function updateProfile(token, userName) {
+  let response
+
+  try {
+    response = await fetch(`${BASE_URL}/user/profile`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ userName }),
+    })
+  } catch {
+    throw new Error('Serveur injoignable.')
+  }
+
+  const data = await response.json()
+
+  if (!response.ok) {
+    throw new Error('La mise à jour a échoué.')
+  }
+
+  return data.body
+}

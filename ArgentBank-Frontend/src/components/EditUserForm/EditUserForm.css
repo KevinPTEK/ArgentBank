@@ -1,0 +1,46 @@
+.edit-user__title {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.edit-user__field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.edit-user__label {
+  width: 8rem;
+  text-align: right;
+}
+
+.edit-user__input {
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.edit-user__input:disabled {
+  background-color: #f0f0f0;
+  color: #999;
+}
+
+.edit-user__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.edit-user__button {
+  border: none;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+}

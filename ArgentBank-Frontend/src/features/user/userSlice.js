@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getProfile } from '../../services/api'
+import { getProfile, updateProfile } from '../../services/api'
 
 export const fetchUserProfile = createAsyncThunk(
   'user/fetchProfile',
@@ -45,6 +45,18 @@ const userSlice = createSlice({
       })
   },
 })
+
+export const updateUserName = createAsyncThunk(
+  'user/updateUserName',
+  async (userName, { getState, rejectWithValue }) => {
+    try {
+      const { token } = getState().auth
+      return await updateProfile(token, userName)
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
 
 export const { clearUser } = userSlice.actions
 export default userSlice.reducer

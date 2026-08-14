@@ -2,6 +2,8 @@ import Nav from '../../components/Nav/Nav'
 import Footer from '../../components/Footer/Footer'
 import AccountCard from '../../components/AccountCard/AccountCard'
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
+import EditUserForm from '../../components/EditUserForm/EditUserForm'
 import './User.css'
 
 const accounts = [
@@ -27,18 +29,27 @@ const accounts = [
 
 function User() {
   const { firstName, lastName } = useSelector((state) => state.user)
+  const [isEditing, setIsEditing] = useState(false)
 
   return (
     <>
       <Nav />
       <main className="main bg-dark">
         <div className="header">
-          <h1>
-            Welcome back
-            <br />
-            {firstName} {lastName}!
-          </h1>
-          <button className="edit-button">Edit Name</button>
+          {isEditing ? (
+            <EditUserForm onClose={() => setIsEditing(false)} />
+          ) : (
+            <>
+              <h1>
+                Welcome back
+                <br />
+                {firstName} {lastName}!
+              </h1>
+              <button className="edit-button" onClick={() => setIsEditing(true)}>
+                Edit Name
+              </button>
+            </>
+          )}
         </div>
         <h2 className="sr-only">Accounts</h2>
         {accounts.map((account) => (
