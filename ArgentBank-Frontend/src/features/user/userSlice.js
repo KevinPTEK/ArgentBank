@@ -13,6 +13,18 @@ export const fetchUserProfile = createAsyncThunk(
   },
 )
 
+export const updateUserName = createAsyncThunk(
+  'user/updateUserName',
+  async (userName, { getState, rejectWithValue }) => {
+    try {
+      const { token } = getState().auth
+      return await updateProfile(token, userName)
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
 const initialState = {
   firstName: null,
   lastName: null,
@@ -43,20 +55,14 @@ const userSlice = createSlice({
         state.status = 'failed'
         state.error = action.payload
       })
+      .addCase(updateUserName.fulfilled, (state, action) => {
+        state.userName = action.payload.userName
+      })
+      .addCase(updateUserName.rejected, (state, action) => {
+        state.error = action.payload
+      })
   },
 })
-
-export const updateUserName = createAsyncThunk(
-  'user/updateUserName',
-  async (userName, { getState, rejectWithValue }) => {
-    try {
-      const { token } = getState().auth
-      return await updateProfile(token, userName)
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  },
-)
 
 export const { clearUser } = userSlice.actions
 export default userSlice.reducer
