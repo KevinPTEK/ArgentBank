@@ -11,7 +11,7 @@ Projet 10 — parcours Développeur Web OpenClassrooms.
 
 ## Installation
 
-```bash
+
 Backend
 mongod --config /opt/homebrew/etc/mongod.conf
 
