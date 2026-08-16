@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUserName } from '../../features/user/userSlice'
 import './EditUserForm.css'
@@ -9,6 +9,13 @@ function EditUserForm({ onClose }) {
   )
   const [newUserName, setNewUserName] = useState(userName ?? '')
   const dispatch = useDispatch()
+  const userNameInputRef = useRef(null)
+
+  // Le bouton « Edit Name » qui avait le focus vient d'être démonté : sans
+  // cette remise au point, le focus retomberait sur <body>.
+  useEffect(() => {
+    userNameInputRef.current?.focus()
+  }, [])
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -25,6 +32,7 @@ function EditUserForm({ onClose }) {
         <div className="edit-user__field">
           <label className="edit-user__label" htmlFor="userName">User name:</label>
           <input
+            ref={userNameInputRef}
             className="edit-user__input"
             type="text"
             id="userName"

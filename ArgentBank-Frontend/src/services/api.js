@@ -1,11 +1,17 @@
 const BASE_URL = 'http://localhost:3001/api/v1'
 
 export async function login({ email, password }) {
-  const response = await fetch(`${BASE_URL}/user/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  })
+  let response
+
+  try {
+    response = await fetch(`${BASE_URL}/user/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    })
+  } catch {
+    throw new Error('Serveur injoignable.')
+  }
 
   const data = await response.json()
 
