@@ -4,8 +4,10 @@ import { updateUserName } from '../../features/user/userSlice'
 import './EditUserForm.css'
 
 function EditUserForm({ onClose }) {
-  const { firstName, lastName, userName } = useSelector((state) => state.user)
-  const [newUserName, setNewUserName] = useState(userName)
+  const { firstName, lastName, userName, updateStatus, updateError } = useSelector(
+    (state) => state.user,
+  )
+  const [newUserName, setNewUserName] = useState(userName ?? '')
   const dispatch = useDispatch()
 
   async function handleSubmit(event) {
@@ -51,8 +53,21 @@ function EditUserForm({ onClose }) {
             disabled
           />
         </div>
+
+        {updateError && (
+          <p className="edit-user__error" role="alert">
+            {updateError}
+          </p>
+        )}
+
         <div className="edit-user__actions">
-          <button type="submit" className="edit-user__button">Save</button>
+          <button
+            type="submit"
+            className="edit-user__button"
+            disabled={updateStatus === 'loading'}
+          >
+            {updateStatus === 'loading' ? 'Saving…' : 'Save'}
+          </button>
           <button type="button" className="edit-user__button" onClick={onClose}>
             Cancel
           </button>

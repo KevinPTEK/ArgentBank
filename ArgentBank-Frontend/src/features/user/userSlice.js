@@ -31,6 +31,8 @@ const initialState = {
   userName: null,
   status: 'idle',
   error: null,
+  updateStatus: 'idle',
+  updateError: null,
 }
 
 const userSlice = createSlice({
@@ -55,11 +57,17 @@ const userSlice = createSlice({
         state.status = 'failed'
         state.error = action.payload
       })
+      .addCase(updateUserName.pending, (state) => {
+        state.updateStatus = 'loading'
+        state.updateError = null
+      })
       .addCase(updateUserName.fulfilled, (state, action) => {
+        state.updateStatus = 'succeeded'
         state.userName = action.payload.userName
       })
       .addCase(updateUserName.rejected, (state, action) => {
-        state.error = action.payload
+        state.updateStatus = 'failed'
+        state.updateError = action.payload
       })
   },
 })
