@@ -4,8 +4,7 @@ export function saveToken(token, remember) {
   const storage = remember ? localStorage : sessionStorage
   const otherStorage = remember ? sessionStorage : localStorage
 
-  // Un token laissé dans l'autre stockage serait relu en priorité par
-  // readToken() : on garantit qu'il n'existe qu'à un seul endroit.
+ 
   otherStorage.removeItem(TOKEN_KEY)
   storage.setItem(TOKEN_KEY, token)
 }
